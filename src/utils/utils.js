@@ -50,3 +50,16 @@ export const unfollowHelper = (profile, clickedProfile) => {
       // the user owns, so just return it unchanged
       profile;
 };
+
+export const setTokenTineStamp = (data) => {
+  const refreshTokenTimeStamp = jwtDecode(data?.refresh_token).exp;
+  localStorage.setItem("refreshTokenTimestamp", refreshTokenTimestamp);
+};
+
+export const shouldRefreshToken =() => {
+  return !!localStorage.getItem('refreshTokenTimestamp');
+};
+
+export const removeTokenTimeStamp = () => {
+  localStorage.removeItem('refreshTokenTimestamp');
+};
